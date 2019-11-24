@@ -10,4 +10,3 @@ echo "На школьной выставке <b>" . PICTURE . "</b> рисунк
 echo "<b>Решение:</b><br/>";
 echo PICTURE." - "."(".MARKER_DRAW." + " .PENCIL_DRAW.") =";
 echo PICTURE - (MARKER_DRAW + PENCIL_DRAW);
-?>

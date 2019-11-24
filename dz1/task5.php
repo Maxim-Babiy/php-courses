@@ -17,9 +17,8 @@ $opel = [
 	'doors' => 4,
 	'year' => 2019
 ];
-$car = ['bmw' => $bmw, 'toyota' => $toyota, 'opel' => $opel];
-foreach ( $car as $name => $data) {
+$cars = ['bmw' => $bmw, 'toyota' => $toyota, 'opel' => $opel];
+foreach ($cars as $name => $data) {
     echo 'CAR ' . $name . '<br/>';
     echo $data['model'] . ' ' . $data['speed'] . ' ' . $data['doors'] . ' ' . $data['year'] . '<br/><br/>';
 }
-?>

@@ -1,19 +1,18 @@
 <?php
 echo '<table style="border:1px solid black;">';
-for ($i=1; $i<=10; $i++) {
+for ($rows = 1; $rows <= 10; $rows++) {
     echo '<tr>';
-    for ($s=1; $s<=10; $s++) {
-        if ($i%2==0 && $s%2==0) {
-            echo '<td>(' . $i*$s . ')</td>';
+    for ($cols = 1; $cols <= 10; $cols++) {
+        if ($rows % 2 == 0 && $cols % 2 == 0) {
+            echo '<td>(' . $rows * $cols . ')</td>';
         }
-        elseif ($i%2!=0 && $s%2!=0) {
-            echo '<td>[' . $i*$s . ']</td>';
+        elseif ($rows % 2 != 0 && $cols % 2 != 0) {
+            echo '<td>[' . $rows * $cols . ']</td>';
         }
         else {
-            echo '<td>' . $i*$s . '</td>';
+            echo '<td>' . $rows * $cols . '</td>';
         }
     }
     echo '</tr>';
 }
 echo '</table>';
-?>
