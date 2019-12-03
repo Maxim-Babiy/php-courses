@@ -1,0 +1,22 @@
+.admin, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    word-wrap: break-word;
+}
+th {
+    background: #c1c2c2;
+    height: 50px;
+    padding: 10px;
+}
+th, td {
+    max-width: 300px;
+}
+.admin_panel {
+    font-size: 20px;
+    display: inline-block;
+    border: 1px solid black;
+    text-decoration: none;
+    padding: 10px;
+    background-color: #c1c2c2;
+}
