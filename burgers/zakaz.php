@@ -31,8 +31,8 @@ $authCheck = $PDO->query("SELECT email FROM users WHERE email = '$email'");
 $authentificate = $authCheck->fetchAll(PDO::FETCH_ASSOC);
 
 if (empty($authentificate)) {
-    $insertUser = $PDO->prepare("INSERT INTO `users` (`user_id`, `name`, `email`, `phone`) VALUES (?, ?, ?, ?)");
-    $insertUser->execute(array('', $name, $email, $phone));
+    $insertUser = $PDO->prepare("INSERT INTO `users` (`name`, `email`, `phone`) VALUES (?, ?, ?)");
+    $insertUser->execute(array($name, $email, $phone));
 
     $userIdQuery = $PDO->query("SELECT `email`, `user_id` FROM users WHERE `email` = '$email'");
     $userIdQueryResult = $userIdQuery->fetchAll(PDO::FETCH_ASSOC);
@@ -46,18 +46,19 @@ if (empty($authentificate)) {
     $userIdQueryResult = $userIdQuery->fetchAll(PDO::FETCH_ASSOC);
     $user_id = $userIdQueryResult[0]['user_id'];
 
-    $orderNumber = $PDO->query("SELECT MAX(`number_of_order`) AS `number_of_order` FROM details WHERE `user_id` = '$user_id'");
+    $userIdQuery = $PDO->query("SELECT `email`, `user_id` FROM users WHERE `email` = '$email'");
+    $userIdQueryResult = $userIdQuery->fetchAll(PDO::FETCH_ASSOC);
+    $user_id = $userIdQueryResult[0]['user_id'];
+
+    $orderNumber = $PDO->query("SELECT COUNT(*) as total FROM details WHERE user_id = '$user_id'");
     $orderNumberResult = $orderNumber->fetchAll(PDO::FETCH_ASSOC);
-    $numberOfOrder = ++$orderNumberResult[0]['number_of_order'];
+    $numberOfOrder = ($orderNumberResult[0]['total']+1);
 
     $InsertOrder = $PDO->prepare("INSERT INTO `details` (`user_id`, `street`, `home`, `part`, `appt`, `floor`, `comment`, `payment`, `callback`, `number_of_order`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $InsertOrder->execute(array($user_id, $street, $home, $part, $appt, $floor, $comment, $payment, $callback, $numberOfOrder));
 
    // Высылаю письмо
-    $orderCountQuery = $PDO->query("SELECT MAX(`count`) AS `count` FROM details");
-    $order_count = $orderCountQuery->fetchAll(PDO::FETCH_ASSOC);
-
-    $subject = 'Заказ №' . $order_count[0]['count'];
+    $subject = 'Заказ №' . $numberOfOrder;
     $message = 'DarkBeefBurger за 500 рублей, 1 шт' . "\r\n" . 'Ваш заказ будет доставлен по адресу:'. "\r\n" .
         'Улица: ' . $_GET['street'] . "\r\n" . 'Дом: ' . $_GET['part'] . "\r\n" . 'Корпус: ' . $_GET['part'] . "\r\n" .
         'Квартира: ' . $_GET['appt'] . "\r\n" . 'Этаж: ' . $_GET['floor']  . "\r\n" . "Спасибо! Это ваш $numberOfOrder заказ!";

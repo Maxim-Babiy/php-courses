@@ -22,7 +22,7 @@ $adminOrdersQuery = $PDO->query("SELECT * FROM `details`");
 $adminOrdersResult = $adminOrdersQuery->fetchAll(PDO::FETCH_ASSOC);
 
 echo '<table class="admin"><tr><th>User ID</th><th>Улица</th><th>Дом</th><th>Корпус</th><th>Квартира</th><th>Этаж</th><th>Комментарий</th>
-<th>Способ оплаты</th><th>Обратный<br>звонок</th><th>Заказ по счету</th><th>Общий<br>номер<br>заказа</th></tr>';
+<th>Способ оплаты</th><th>Обратный<br>звонок</th><th>Заказ по счету</th></tr>';
 foreach ($adminOrdersResult as $user_info ) {
     echo '<tr>';
     foreach ($user_info as $info) {

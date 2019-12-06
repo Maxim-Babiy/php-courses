@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 03 2019 г., 22:18
+-- Время создания: Дек 06 2019 г., 08:29
 -- Версия сервера: 5.6.43
 -- Версия PHP: 7.3.2
 
@@ -38,23 +38,21 @@ CREATE TABLE `details` (
   `comment` text NOT NULL,
   `payment` char(9) NOT NULL,
   `callback` varchar(5) NOT NULL,
-  `number_of_order` smallint(5) NOT NULL,
-  `count` int(11) UNSIGNED NOT NULL
+  `number_of_order` smallint(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `details`
 --
 
-INSERT INTO `details` (`user_id`, `street`, `home`, `part`, `appt`, `floor`, `comment`, `payment`, `callback`, `number_of_order`, `count`) VALUES
-(1, 'Якуба Коласа ', '6в', '1', 8, 12, 'Побольше соуса', 'need Rest', 'don\'t', 1, 1),
-(1, 'Якуба Коласа ', '6в', '1', 8, 12, 'Дайте два', 'card Pay', 'don\'t', 2, 2),
-(1, 'Якуба Коласа ', '6в', '1', 8, 12, 'Оставьте под дверью', 'card Pay', 'call', 3, 3),
-(2, 'Пушкина', '4', '2', 120, 16, 'Трололо', 'card Pay', 'don\'t', 1, 4),
-(2, 'Пушкина', '4', '2', 120, 16, 'И погорячее!', 'need Rest', 'call', 2, 5),
-(1, 'Якуба Коласа', '6в', '1', 88, 11, 'Добавки бы', 'need Rest', 'don\'t', 4, 6),
-(3, 'Космонавтов', '2а', '3', 14, 3, 'Побольше салфеток', 'card Pay', 'call', 1, 7),
-(3, 'Брежнева', '3в', '', 5, 1, 'Это для моей бабушки', 'card Pay', 'call', 2, 8);
+INSERT INTO `details` (`user_id`, `street`, `home`, `part`, `appt`, `floor`, `comment`, `payment`, `callback`, `number_of_order`) VALUES
+(1, 'Якуба Коласа', '6б', '', 87, 12, 'Очень голоден', 'need Rest', 'call', 1),
+(1, 'Якуба Коласа', '6б', '', 87, 12, 'Очень голоден', 'need Rest', 'call', 2),
+(2, 'Пушкина', '1', '', 100, 16, 'Пожалуйста не опаздывайте', 'card Pay', 'don\'t', 1),
+(3, 'Космонавтов', '3в', '2', 13, 2, 'Код в подъезд 38', 'card Pay', 'call', 1),
+(2, 'Пушкина', '1', '', 100, 16, 'Побольше соуса', 'card Pay', 'don\'t', 2),
+(2, 'Пушкина', '1', '', 100, 16, 'Побольше соуса', 'card Pay', 'don\'t', 3),
+(3, 'Космонавтов', '3в', '2', 13, 2, 'На вахте скажите, что вы к Вано, сегодня там злая бабуля', 'need Rest', 'don\'t', 2);
 
 -- --------------------------------------------------------
 
@@ -74,19 +72,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `phone`) VALUES
-(1, 'Максим', 'koldmax@ukr.net', '+7 (053) 444 33 32'),
-(2, 'Максим', 'marina@ukr.net', '+7 (053) 444 33 32'),
-(3, 'Иван', 'vano@mailer.ru', '+7 (033) 456 78 90');
+(1, 'Макс', 'koldmax@ukr.net', '+7 (063) 348 32 05'),
+(2, 'Марина', 'marina@mail.ru', '+7 (538) 988 7_ __'),
+(3, 'Ваня', 'vano@mailer.ru', '+7 (456) 776 53 53');
 
 --
 -- Индексы сохранённых таблиц
 --
-
---
--- Индексы таблицы `details`
---
-ALTER TABLE `details`
-  ADD PRIMARY KEY (`count`);
 
 --
 -- Индексы таблицы `users`
@@ -98,12 +90,6 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT для сохранённых таблиц
 --
-
---
--- AUTO_INCREMENT для таблицы `details`
---
-ALTER TABLE `details`
-  MODIFY `count` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
